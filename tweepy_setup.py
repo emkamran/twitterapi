@@ -13,18 +13,7 @@ auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_tok
 
 api = tweepy.API(auth)
 
-def vid_url(statusid):
-    try:
-        status = api.get_status(statusid)
-        variants = status.extended_entities['media'][0]["video_info"]["variants"]
-        for i in variants:
-            if i["content_type"]=='video/mp4':
-                video_url= i["url"]
-                break
 
-        if video_url:
-            return video_url.split('?')[0]
-        else:
-            return None
-    except:
-        return None
+# Call twitter API to get tweet 
+
+status = api.get_status("statusid")
